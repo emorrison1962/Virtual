@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Recipes.Domain.Recipe>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+
+<style>
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+
+    input {
+        max-width: none;
+    }
+
+}</style>
+
+
+<div class="row" ng-controller='indexController' ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))">
+
+	@*Add at bottom: <script src="~/Scripts/Views/Recipe/Index.js"></script>*@
+
+    <div class="main col-md-offset-2 col-md-6">
+        <div class="page-header">
+            <h2>Recipes</h2>
+        </div>
+
+
+        <form class="row form-horizontal" id="insert" ng-submit="insert()" role="form">
+            <div class="form-group ">
+                <div class="controls  col-md-10 ">
+                    <div class="input-group form-control ">
+                        <span class="input-group-addon ">Add</span>
+                        <input class="col-md-10 form-control" type="text" placeholder="http://..." ng-model=newRecipe>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div id="filter" class="row">
+            <div class="form-group ">
+                <div class="col-md-10 ">
+                    <div class="input-group ">
+                        <span class="input-group-addon" for="filter">Filter:</span>
+                        <input id="filter" class="form-control" type="text" name="fname" ng-model="filter" ng-change="filterChanged()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="recipes" class="module panel panel-default">
+
+            <div class="row" ng-repeat="recipe in visibleRecipes">
+                <div class="col-md-2" id="pictures">
+                    <a ng-href="@Url.Action("View", "Recipe")?recipeId={{recipe.RecipeId}}">
+                        <img class="img-responsive" src="{{recipe.ImageUri}}" /> @*style="max-width:200px; max-height:200px"*@
+                    </a>
+                </div>
+
+                <div class="col-md-6" id="text">
+                    <a ng-href="@Url.Action("View", "Recipe")?recipeId={{recipe.RecipeId}}">
+                        <h4 class="h4">{{recipe.Name}}</h4>
+                    </a>
+                </div>
+
+                <div class="col-md-2" id="actions">
+                    <a href="{{recipe.Uri}}" target="_blank">
+                        <span class="glyphicon glyphicon-globe" aria-hidden="true" />
+                    </a>
+                    <a aria-hidden="true" ng-href="@Url.Action("Update", "Recipe")?recipeId={{recipe.RecipeId}}">
+                        <span class="glyphicon glyphicon-pencil" />
+                    </a>
+                    <a aria-hidden="true" ng-href="@Url.Action("Delete", "Recipe")?recipeId={{recipe.RecipeId}}">
+                        <span class="glyphicon glyphicon-trash" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+	</div>
+</div>
+
+<script src="~/Scripts/Views/Recipe/Index.js"></script>

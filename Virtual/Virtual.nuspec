@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.6</version>
+    <title>$title$</title>
+    <authors>EVO</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Virtual</description>
+    <releaseNotes>Published by NugetPackAndPush on 3/24/2017 4:11 PM.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="bin\Debug\Virtual.pdb" target="lib\net45" />
+  </files>
+</package>
